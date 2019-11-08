@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-@from_dir = "NetReader3"
+@from_dir = "src"
 @to_dir = "dest"
 
 Dir.mkdir(@to_dir, 0666) unless Dir.exist?(@to_dir)
