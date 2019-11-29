@@ -1,11 +1,11 @@
 require 'nokogiri'
 
-@from_dir = "src"
-@to_dir = "dest"
+@from_dir = "mybook5_origin"
+@to_dir = "mybook5"
 
 Dir.mkdir(@to_dir, 0666) unless Dir.exist?(@to_dir)
 
-def convert(src, dest)
+def sjis2utf8(src, dest)
   doc = Nokogiri::HTML.parse(open(src, "r:Shift_JIS").read)
 
   dir_name = File.dirname(dest)
@@ -18,9 +18,9 @@ end
 
 def src_htmls
   htmlfiles = File.join("#{@from_dir}/**", "*.htm")
-  Pathname.glob(htmlfiles) #.slice 0..5
+  Pathname.glob(htmlfiles)
 end
 
 src_htmls.each do |src_path_name|
-  convert( src_path_name, src_path_name.sub(@from_dir, @to_dir).sub_ext(".html"))
+  sjis2utf8( src_path_name, src_path_name.sub(@from_dir, @to_dir).sub_ext(".html"))
 end
